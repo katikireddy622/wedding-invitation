@@ -10,7 +10,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -22,26 +22,34 @@
           fontFamily: {
             serif: ['Cormorant Garamond', 'Georgia', 'serif'],
             cursive: ['Great Vibes', 'cursive'],
-            cinzel: ['Cinzel Decorative', 'serif'],
             sans: ['Montserrat', 'sans-serif'],
           },
           colors: {
-            royal: {
-              light: '#0D3E26',
-              DEFAULT: '#0A2E1C',
-              dark: '#051A10',
-            },
-            champagne: {
-              light: '#F5E5C9',
-              DEFAULT: '#E6C280',
-              dark: '#C29B53',
+            cream: {
+              DEFAULT: '#FDFBF7',
+              dark: '#F5EFEB',
             },
             maroon: {
               DEFAULT: '#7A1F2D',
               dark: '#5C1D24',
+              light: '#8E2838',
+            },
+            rosegold: {
+              light: '#EAD3D5',
+              DEFAULT: '#B76E79',
+              dark: '#9E5B65',
+            },
+            blush: {
+              DEFAULT: '#FDF3F3',
+              dark: '#F8DFDF',
+            },
+            leaf: {
+              light: '#EAF2EC',
+              DEFAULT: '#4A7A61',
+              dark: '#2E5A44',
             },
             gold: {
-              light: '#FFF5D6',
+              light: '#F3E5C8',
               DEFAULT: '#D4AF37',
               dark: '#AA7C11',
             }
@@ -57,30 +65,20 @@
       width: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #051A10;
+      background: #FDFBF7;
     }
     ::-webkit-scrollbar-thumb {
-      background: #E6C280;
+      background: #B76E79;
       border-radius: 3px;
     }
 
-    /* Jhumar Chandelier Swing Animation */
-    @keyframes jhumar-swing {
-      0%, 100% { transform: rotate(-3deg); }
-      50% { transform: rotate(3deg); }
+    /* Lantern Flame Animation */
+    @keyframes flicker {
+      0%, 100% { transform: scale(1) translate(-50%, -50%); opacity: 0.85; filter: blur(1px); }
+      50% { transform: scale(1.15) translate(-50%, -55%); opacity: 1; filter: blur(0px); }
     }
-    .jhumar-animation {
-      animation: jhumar-swing 6s infinite ease-in-out;
-      transform-origin: top center;
-    }
-
-    /* Soft Chandelier Glow Flicker */
-    @keyframes soft-glow {
-      0%, 100% { opacity: 0.75; }
-      50% { opacity: 0.95; }
-    }
-    .glow-effect {
-      animation: soft-glow 3s infinite ease-in-out;
+    .flame-glow {
+      animation: flicker 2s infinite ease-in-out;
     }
 
     /* Falling Petals Animation */
@@ -96,302 +94,364 @@
     }
     .petal {
       position: absolute;
+      background: radial-gradient(circle, rgba(255,192,203,0.7) 0%, rgba(255,182,193,0.1) 70%);
       border-radius: 50% 0 50% 50%;
       pointer-events: none;
       animation: fall linear infinite;
     }
     @keyframes fall {
       0% {
-        transform: translateY(-20px) rotate(0deg) scale(0.6);
+        transform: translateY(-20px) rotate(0deg) scale(0.8);
         opacity: 0;
       }
       10% {
-        opacity: 0.9;
+        opacity: 0.8;
       }
       90% {
-        opacity: 0.9;
+        opacity: 0.8;
       }
       100% {
-        transform: translateY(105vh) rotate(360deg) scale(1.1);
+        transform: translateY(105vh) rotate(360deg) scale(1.2);
         opacity: 0;
       }
     }
 
-    /* Rotating Mandala Animation */
-    @keyframes rotate-mandala {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    /* Floating / Pulsing animation for elements */
+    @keyframes gentle-float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
     }
-    .rotating-mandala {
-      animation: rotate-mandala 120s linear infinite;
+    .float-slow {
+      animation: gentle-float 6s infinite ease-in-out;
+    }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .ring-pulse {
+      animation: pulse-ring 3s infinite ease-in-out;
+    }
+
+    /* Jali Overlay Pattern */
+    .jali-overlay {
+      background-image: radial-gradient(circle, #D4AF37 1px, transparent 1px), radial-gradient(circle, #D4AF37 1px, transparent 1px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+      opacity: 0.04;
     }
 
     /* Modal Backdrop glassmorphism */
     dialog::backdrop {
-      background: rgba(5, 26, 16, 0.65);
-      backdrop-filter: blur(10px);
+      background: rgba(46, 25, 29, 0.4);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Envelope Gate Style */
+    .envelope-bg {
+      background-image: radial-gradient(circle, #D4AF37 0.75px, transparent 0.75px), radial-gradient(circle, #D4AF37 0.75px, transparent 0.75px);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      background-color: #FDFBF7;
     }
   </style>
 </head>
-<body class="bg-royal-dark min-h-screen text-champagne font-sans relative overflow-x-hidden flex items-center justify-center py-8 px-4 md:py-12">
+<body class="bg-cream min-h-screen text-maroon font-sans relative overflow-x-hidden flex items-center justify-center py-8 px-4 md:py-12">
 
-  <!-- Floating Petals Container -->
-  <div id="petal-container" class="petal-container"></div>
-
-  <!-- Background Mandala Elements -->
-  <div class="absolute -top-40 -left-40 w-96 h-96 rotating-mandala opacity-[0.03] pointer-events-none text-champagne">
-    <svg viewBox="0 0 100 100" fill="currentColor">
-      <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1" />
-      <path d="M 50,0 Q 55,25 50,50 Q 45,25 50,0 M 50,50 Q 55,75 50,100 Q 45,75 50,50 M 0,50 Q 25,55 50,50 Q 25,45 0,50 M 50,50 Q 75,55 100,50 Q 75,45 50,50" />
-      <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" stroke-width="0.75" />
-    </svg>
-  </div>
-  <div class="absolute -bottom-40 -right-40 w-96 h-96 rotating-mandala opacity-[0.03] pointer-events-none text-champagne" style="animation-direction: reverse;">
-    <svg viewBox="0 0 100 100" fill="currentColor">
-      <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1 1" />
-      <path d="M 50,0 Q 55,25 50,50 Q 45,25 50,0 M 50,50 Q 55,75 50,100 Q 45,75 50,50 M 0,50 Q 25,55 50,50 Q 25,45 0,50 M 50,50 Q 75,55 100,50 Q 75,45 50,50" />
-      <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" stroke-width="0.75" />
-    </svg>
-  </div>
-
-  <div class="absolute inset-0 bg-gradient-to-b from-royal-dark via-royal to-royal-dark pointer-events-none"></div>
-
-  <!-- Main Card Container: Framed inside an elegant Mughal Archway -->
-  <div class="w-full max-w-lg bg-royal border border-champagne/20 rounded-[36px] shadow-[0_20px_50px_rgba(230,194,128,0.08)] relative z-20 overflow-hidden flex flex-col items-center p-6 md:p-10 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(230,194,128,0.15)] transform hover:scale-[1.005]">
+  <!-- Interactive Entrance Envelope Gate -->
+  <div id="envelope-gate" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 envelope-bg transition-all duration-1000 ease-in-out">
+    <div class="absolute inset-0 bg-gradient-to-b from-cream/90 via-cream/40 to-blush/30 pointer-events-none"></div>
     
+    <!-- Outer Envelope Frame border -->
+    <div class="absolute inset-6 border border-gold/30 rounded-3xl pointer-events-none flex items-center justify-center">
+      <div class="absolute inset-2 border-2 border-double border-gold/20 rounded-[20px]"></div>
+    </div>
+
+    <!-- Hanging Lanterns at Gate -->
+    <div class="absolute top-8 left-12 w-8 h-20 opacity-40 float-slow hidden md:block">
+      <svg viewBox="0 0 40 100" class="w-full h-full text-gold" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="20" y1="0" x2="20" y2="40" /><path d="M 10,40 Q 20,25 30,40 Z" fill="currentColor" /><path d="M 8,40 L 32,40 L 35,70 L 5,70 Z" />
+      </svg>
+    </div>
+    <div class="absolute top-8 right-12 w-8 h-20 opacity-40 float-slow hidden md:block" style="animation-delay: -3s;">
+      <svg viewBox="0 0 40 100" class="w-full h-full text-gold" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="20" y1="0" x2="20" y2="40" /><path d="M 10,40 Q 20,25 30,40 Z" fill="currentColor" /><path d="M 8,40 L 32,40 L 35,70 L 5,70 Z" />
+      </svg>
+    </div>
+
+    <!-- Center Wax Seal Monogram Logo (Click target to open) -->
+    <div class="flex flex-col items-center z-10 cursor-pointer text-center" id="wax-seal-btn" role="button" aria-label="Open wedding invitation">
+      
+      <p class="font-serif italic text-lg text-rosegold-dark tracking-wider mb-6">
+        You are cordially invited
+      </p>
+
+      <!-- Royal Circular Wax Seal Badge -->
+      <div class="relative w-32 h-32 flex items-center justify-center transition-transform duration-500 hover:scale-110 active:scale-95">
+        <!-- Pulsing gold rings -->
+        <span class="absolute inset-0 rounded-full border border-gold/50 ring-pulse"></span>
+        <span class="absolute inset-2 rounded-full border-2 border-double border-gold/40 ring-pulse" style="animation-delay: -1s;"></span>
+        
+        <!-- Wax Seal Body -->
+        <div class="w-24 h-24 bg-gradient-to-br from-maroon-light via-maroon to-maroon-dark rounded-full shadow-[0_8px_20px_rgba(122,31,45,0.3)] border-2 border-gold/50 flex flex-col items-center justify-center relative">
+          <!-- Inner circle -->
+          <div class="absolute inset-1.5 border border-dashed border-gold/30 rounded-full"></div>
+          <!-- Initials -->
+          <span class="font-cursive text-4xl text-gold-light font-semibold tracking-wider relative top-0.5">R&C</span>
+        </div>
+      </div>
+
+      <h2 class="font-serif text-3xl font-semibold text-maroon mt-8 mb-2">
+        Rahul & Chandana
+      </h2>
+      <p class="text-xs uppercase tracking-[0.2em] font-semibold text-gold-dark">
+        Tap the Seal to Open
+      </p>
+    </div>
+    
+    <!-- Footer line on gate -->
+    <p class="absolute bottom-10 font-serif italic text-sm text-rosegold-dark">August 27, 2026</p>
+  </div>
+
+  <!-- Inner Invitation Card (Initially Hidden / Becomes Visible on Envelope Open) -->
+  <div id="main-invitation-card" class="w-full max-w-lg bg-cream border border-gold/30 rounded-[32px] shadow-2xl relative z-20 overflow-hidden flex flex-col items-center p-6 md:p-10 transition-all duration-1000 opacity-0 scale-95 transform pointer-events-none">
+    
+    <!-- Floating Petals Container -->
+    <div id="petal-container" class="petal-container"></div>
+
+    <!-- Background Jali Texture -->
+    <div class="absolute inset-0 jali-overlay pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-cream via-cream/80 to-blush/30 pointer-events-none"></div>
+
     <!-- Outer Indian Arch Frame Vector Overlay -->
-    <div class="absolute inset-4 border border-champagne/30 rounded-[28px] pointer-events-none z-10">
-      <!-- Arch Shape Drawing at top -->
-      <svg class="absolute top-0 left-0 w-full h-20 text-champagne/40" viewBox="0 0 100 40" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="0.75">
-        <path d="M 0,40 C 10,40 18,34 25,28 C 32,23 37,20 40,20 C 43,20 45,15 50,4 C 55,15 57,20 60,20 C 63,20 68,23 75,28 C 82,34 90,40 100,40" />
-        <path d="M 0,37 C 10,37 18,31 25,25 C 32,20 37,17 40,17 C 43,17 45,12 50,1 C 55,12 57,17 60,17 C 63,17 68,20 75,25 C 82,31 90,37 100,37" stroke-dasharray="1 1" />
+    <div class="absolute inset-4 border-2 border-gold/40 rounded-[24px] pointer-events-none z-10">
+      <svg class="absolute top-0 left-0 w-full h-16 text-gold/40" viewBox="0 0 100 40" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="0.5">
+        <path d="M 0,40 C 15,40 25,30 35,25 C 43,21 47,15 50,5 C 53,15 57,21 65,25 C 75,30 85,40 100,40" />
+        <path d="M 0,38 C 15,38 25,28 35,23 C 43,19 47,13 50,3 C 53,13 57,19 65,23 C 75,28 85,38 100,38" />
       </svg>
-      <!-- Arch Shape Drawing at bottom -->
-      <svg class="absolute bottom-0 left-0 w-full h-12 text-champagne/30 transform rotate-180" viewBox="0 0 100 40" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="0.5">
-        <path d="M 0,40 C 10,40 18,34 25,28 C 32,23 37,20 40,20 C 43,20 45,15 50,4 C 55,15 57,20 60,20 C 63,20 68,23 75,28 C 82,34 90,40 100,40" />
+      <svg class="absolute bottom-0 left-0 w-full h-12 text-gold/30 transform rotate-180" viewBox="0 0 100 40" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="0.5">
+        <path d="M 0,40 C 15,40 25,30 35,25 C 43,21 47,15 50,5 C 53,15 57,21 65,25 C 75,30 85,40 100,40" />
       </svg>
     </div>
 
-    <!-- Hanging Royal Jhumka Chandeliers (Swing Animation) -->
-    <!-- Left Chandelier -->
-    <div class="absolute top-0 left-8 w-12 h-28 z-30 pointer-events-none jhumar-animation">
-      <svg viewBox="0 0 40 100" class="w-full h-full text-champagne" fill="none" stroke="currentColor" stroke-width="1.2">
-        <line x1="20" y1="0" x2="20" y2="45" />
-        <!-- Layer 1 -->
-        <path d="M 12,45 C 20,40 20,40 28,45 L 32,55 C 20,62 20,62 8,55 Z" fill="currentColor" fill-opacity="0.1" />
-        <!-- Hanging beads -->
-        <circle cx="20" cy="65" r="2.5" fill="currentColor" />
-        <circle cx="12" cy="60" r="1.5" fill="currentColor" />
-        <circle cx="28" cy="60" r="1.5" fill="currentColor" />
-        <!-- Little bells -->
-        <path d="M 19,65 L 21,65 L 20,70 Z" fill="currentColor" />
+    <!-- Hanging Lanterns -->
+    <div class="absolute top-4 left-6 w-10 h-24 z-30 pointer-events-none float-slow">
+      <svg viewBox="0 0 40 100" class="w-full h-full text-gold" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="20" y1="0" x2="20" y2="40" /><path d="M 10,40 Q 20,25 30,40 Z" fill="currentColor" /><path d="M 8,40 L 32,40 L 35,70 L 5,70 Z" /><circle cx="20" cy="78" r="3" fill="currentColor" />
+        <line x1="15" y1="40" x2="15" y2="70" stroke-width="0.75" /><line x1="20" y1="40" x2="20" y2="70" stroke-width="0.75" /><line x1="25" y1="40" x2="25" y2="70" stroke-width="0.75" />
       </svg>
-      <!-- Glowing light source -->
-      <span class="absolute top-[48px] left-[15px] w-2.5 h-2.5 bg-amber-400 rounded-full glow-effect shadow-[0_0_15px_6px_rgba(245,158,11,0.7)]"></span>
+      <span class="absolute top-[52px] left-1/2 w-2 h-3 bg-amber-500 rounded-full flame-glow shadow-[0_0_8px_4px_rgba(245,158,11,0.6)]"></span>
+    </div>
+    <div class="absolute top-4 right-6 w-10 h-24 z-30 pointer-events-none float-slow" style="animation-delay: -3s;">
+      <svg viewBox="0 0 40 100" class="w-full h-full text-gold" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="20" y1="0" x2="20" y2="40" /><path d="M 10,40 Q 20,25 30,40 Z" fill="currentColor" /><path d="M 8,40 L 32,40 L 35,70 L 5,70 Z" /><circle cx="20" cy="78" r="3" fill="currentColor" />
+        <line x1="15" y1="40" x2="15" y2="70" stroke-width="0.75" /><line x1="20" y1="40" x2="20" y2="70" stroke-width="0.75" /><line x1="25" y1="40" x2="25" y2="70" stroke-width="0.75" />
+      </svg>
+      <span class="absolute top-[52px] left-1/2 w-2 h-3 bg-amber-500 rounded-full flame-glow shadow-[0_0_8px_4px_rgba(245,158,11,0.6)]"></span>
     </div>
 
-    <!-- Right Chandelier -->
-    <div class="absolute top-0 right-8 w-12 h-28 z-30 pointer-events-none jhumar-animation" style="animation-delay: -3s;">
-      <svg viewBox="0 0 40 100" class="w-full h-full text-champagne" fill="none" stroke="currentColor" stroke-width="1.2">
-        <line x1="20" y1="0" x2="20" y2="45" />
-        <path d="M 12,45 C 20,40 20,40 28,45 L 32,55 C 20,62 20,62 8,55 Z" fill="currentColor" fill-opacity="0.1" />
-        <circle cx="20" cy="65" r="2.5" fill="currentColor" />
-        <circle cx="12" cy="60" r="1.5" fill="currentColor" />
-        <circle cx="28" cy="60" r="1.5" fill="currentColor" />
-        <path d="M 19,65 L 21,65 L 20,70 Z" fill="currentColor" />
+    <!-- Header Floral Corner Frames -->
+    <div class="absolute -top-1 -left-1 w-24 h-24 pointer-events-none opacity-90 z-20">
+      <svg viewBox="0 0 100 100" fill="none" class="w-full h-full text-leaf">
+        <path d="M 5,20 C 15,18 35,25 45,35 C 35,45 18,35 20,5" fill="currentColor" opacity="0.65" />
+        <path d="M 5,5 C 25,8 45,20 50,45 C 30,40 15,25 5,5" fill="#2E5A44" opacity="0.45" />
+        <path d="M 10,40 C 25,55 40,40 30,25 C 20,15 5,25 10,40" fill="#B76E79" opacity="0.85" />
+        <path d="M 25,32 Q 22,28 20,38" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" />
       </svg>
-      <span class="absolute top-[48px] left-[15px] w-2.5 h-2.5 bg-amber-400 rounded-full glow-effect shadow-[0_0_15px_6px_rgba(245,158,11,0.7)]"></span>
+    </div>
+    <div class="absolute -top-1 -right-1 w-24 h-24 pointer-events-none opacity-90 z-20 transform scale-x-[-1]">
+      <svg viewBox="0 0 100 100" fill="none" class="w-full h-full text-leaf">
+        <path d="M 5,20 C 15,18 35,25 45,35 C 35,45 18,35 20,5" fill="currentColor" opacity="0.65" />
+        <path d="M 5,5 C 25,8 45,20 50,45 C 30,40 15,25 5,5" fill="#2E5A44" opacity="0.45" />
+        <path d="M 10,40 C 25,55 40,40 30,25 C 20,15 5,25 10,40" fill="#B76E79" opacity="0.85" />
+        <path d="M 25,32 Q 22,28 20,38" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" />
+      </svg>
     </div>
 
-    <!-- Royal Palace Shield Monogram -->
-    <div class="mt-8 mb-3 relative flex items-center justify-center">
-      <div class="w-16 h-16 border border-champagne rounded-full flex items-center justify-center bg-royal-dark/90 shadow-[0_0_15px_rgba(230,194,128,0.2)]">
-        <!-- Shield decoration inside -->
-        <span id="monogram-initials" class="font-serif font-bold text-lg tracking-widest text-champagne-light">R&C</span>
+    <!-- Custom Initials Monogram -->
+    <div class="mt-8 mb-4 relative flex items-center justify-center">
+      <div class="w-16 h-16 border-2 border-double border-gold rounded-full flex items-center justify-center bg-cream/90 shadow-md">
+        <span id="monogram-initials" class="font-serif font-bold text-lg tracking-widest text-gold-dark">R&C</span>
       </div>
     </div>
 
     <!-- Celebration Tagline -->
-    <p class="text-[10px] uppercase tracking-[0.25em] font-semibold text-champagne-dark mb-1 text-center">
-      The Royal Wedding Invitation
+    <p class="text-xs uppercase tracking-[0.2em] font-semibold text-gold-dark mb-2 text-center">
+      Shubh Mangalam · With Divine Blessings
     </p>
 
     <!-- Couple Names (Elegant Calligraphy) -->
-    <h1 id="couple-names-display" class="font-cursive text-5xl md:text-6xl text-champagne-light text-center my-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+    <h1 id="couple-names-display" class="font-cursive text-5xl md:text-6xl text-maroon text-center my-3 hover:scale-105 transition-transform duration-300">
       Rahul & Chandana
     </h1>
 
-    <div class="w-20 h-[1.5px] bg-gradient-to-r from-transparent via-champagne to-transparent my-2"></div>
+    <div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent my-2"></div>
 
-    <!-- Centerpiece Regal Couple Illustration inside gold archway -->
-    <div class="w-56 h-56 my-3 relative flex items-center justify-center bg-gradient-to-b from-royal-dark to-royal rounded-full border border-champagne/30 shadow-[0_0_20px_rgba(230,194,128,0.1)]">
-      <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-lg">
+    <!-- Centerpiece Minimalist Vector Couple Illustration -->
+    <div class="w-56 h-56 my-4 relative flex items-center justify-center bg-gradient-to-b from-blush to-cream/20 rounded-full border border-gold/20 shadow-inner">
+      <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
         <defs>
           <linearGradient id="lehenghaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#7A1F2D" />
-            <stop offset="100%" stop-color="#C5A059" />
+            <stop offset="0%" stop-color="#991B1B" />
+            <stop offset="100%" stop-color="#E11D48" />
           </linearGradient>
-          <linearGradient id="goldSilk" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#E6C280" />
-            <stop offset="100%" stop-color="#C29B53" />
+          <linearGradient id="sherwaniGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#AA7C11" />
+            <stop offset="100%" stop-color="#F3E5C8" />
           </linearGradient>
         </defs>
-        
-        <!-- Groom Sherwani and Turban (Palace Royal Version) -->
         <g transform="translate(45, 45)">
-          <ellipse cx="40" cy="35" rx="13" ry="17" fill="#E8B88A" />
-          <!-- Sherwani with heavy gold embroidery details -->
-          <path d="M 22,50 L 58,50 L 66,120 L 14,120 Z" fill="#5c1d24" stroke="#E6C280" stroke-width="1.5" />
-          <path d="M 40,50 L 40,120" stroke="#E6C280" stroke-width="2" />
-          <!-- Royal Pearl necklace -->
-          <path d="M 30,50 C 35,58 45,58 50,50" stroke="#FFF" stroke-width="2" stroke-dasharray="1.5 1.5" fill="none" />
-          <!-- Royal Dupatta draped -->
-          <path d="M 22,58 C 30,85 50,85 58,58" fill="url(#goldSilk)" opacity="0.95" />
-          <!-- Safa (Royal Maroon Turban) -->
-          <path d="M 23,26 C 23,26 30,12 40,14 C 50,12 57,26 57,26 C 57,26 62,20 54,12 C 45,4 35,4 26,12 C 18,20 23,26 23,26" fill="#7A1F2D" />
-          <path d="M 24,25 Q 40,19 56,25" fill="#E6C280" />
-          <!-- Kalgi jewel -->
-          <path d="M 40,14 L 40,2 L 43,8 Z" fill="#E6C280" />
-          <circle cx="40" cy="14" r="2" fill="#E6C280" />
+          <ellipse cx="40" cy="35" rx="14" ry="18" fill="#FAD1A4" />
+          <path d="M 22,50 L 58,50 L 66,120 L 14,120 Z" fill="#FDFBF7" stroke="#AA7C11" stroke-width="1.5" />
+          <path d="M 40,50 L 40,120" stroke="#D4AF37" stroke-width="2" />
+          <path d="M 22,55 C 30,70 50,70 58,55 C 55,90 25,90 22,55" fill="url(#sherwaniGrad)" opacity="0.9" />
+          <path d="M 23,26 C 23,26 30,12 40,14 C 50,12 57,26 57,26 C 57,26 62,20 54,12 C 45,4 35,4 26,12 C 18,20 23,26 23,26" fill="#991B1B" />
+          <path d="M 24,25 Q 40,18 56,25 Q 40,22 24,25" fill="#D4AF37" />
+          <path d="M 40,14 L 40,4 L 43,9 Z" fill="#D4AF37" /><circle cx="40" cy="14" r="2.5" fill="#E11D48" />
         </g>
-        
-        <!-- Bride Lehengha (Royal Maroon & Champagne Version) -->
         <g transform="translate(95, 55)">
-          <ellipse cx="45" cy="30" rx="12" ry="15" fill="#E8B88A" />
-          <path d="M 32,25 C 32,15 58,15 58,25 C 60,35 62,45 60,60" fill="#0A0A0C" />
-          <!-- Heavily decorated bridal lehengha -->
-          <path d="M 25,46 L 65,46 L 75,110 L 15,110 Z" fill="url(#lehenghaGrad)" stroke="#E6C280" stroke-width="1" />
-          <!-- Gold waistband (Kamarbandh) -->
-          <path d="M 23,55 Q 45,65 67,55" stroke="#E6C280" stroke-width="2.5" fill="none" />
-          <!-- Veil Dupatta over head and shoulder -->
-          <path d="M 32,18 C 24,22 17,35 15,55 C 13,75 24,95 32,105 C 29,85 23,65 29,46" fill="#7A1F2D" opacity="0.9" />
-          <path d="M 32,18 C 24,22 17,35 15,55" stroke="#E6C280" stroke-width="1.5" fill="none" />
+          <ellipse cx="45" cy="30" rx="13" ry="16" fill="#FAD1A4" />
+          <path d="M 32,25 C 32,15 58,15 58,25 C 60,35 62,45 60,60" fill="#111827" />
+          <path d="M 25,46 L 65,46 L 75,110 L 15,110 Z" fill="url(#lehenghaGrad)" />
+          <path d="M 25,46 Q 45,55 65,46" stroke="#D4AF37" stroke-width="1.5" fill="none" />
+          <path d="M 32,18 C 25,22 18,35 16,55 C 14,75 25,95 32,105 C 30,85 24,65 30,46" fill="#BE123C" opacity="0.85" />
+          <path d="M 32,18 C 25,22 18,35 16,55" stroke="#D4AF37" stroke-width="1" fill="none" />
+          <path d="M 36,40 Q 45,46 54,40" stroke="#D4AF37" stroke-width="2" fill="none" /><circle cx="45" cy="44" r="1.5" fill="#BE123C" />
         </g>
       </svg>
     </div>
 
     <!-- Countdown Timer -->
-    <div id="countdown" class="grid grid-cols-4 gap-2 w-full max-w-[280px] my-3" aria-live="polite" aria-label="Countdown to wedding">
-      <div class="bg-royal-dark/80 border border-champagne/30 rounded-xl p-2 text-center shadow-md">
-        <span id="days" class="block font-bold text-lg text-champagne-light">00</span>
-        <small class="text-[9px] uppercase tracking-wider text-champagne-dark">Days</small>
+    <div id="countdown" class="grid grid-cols-4 gap-2 w-full max-w-[280px] my-3 animate-pulse" aria-live="polite" aria-label="Countdown to wedding">
+      <div class="bg-white/60 border border-gold/20 rounded-xl p-2 text-center shadow-sm">
+        <span id="days" class="block font-bold text-lg text-maroon">00</span>
+        <small class="text-[9px] uppercase tracking-wider text-rosegold-dark">Days</small>
       </div>
-      <div class="bg-royal-dark/80 border border-champagne/30 rounded-xl p-2 text-center shadow-md">
-        <span id="hours" class="block font-bold text-lg text-champagne-light">00</span>
-        <small class="text-[9px] uppercase tracking-wider text-champagne-dark">Hrs</small>
+      <div class="bg-white/60 border border-gold/20 rounded-xl p-2 text-center shadow-sm">
+        <span id="hours" class="block font-bold text-lg text-maroon">00</span>
+        <small class="text-[9px] uppercase tracking-wider text-rosegold-dark">Hrs</small>
       </div>
-      <div class="bg-royal-dark/80 border border-champagne/30 rounded-xl p-2 text-center shadow-md">
-        <span id="minutes" class="block font-bold text-lg text-champagne-light">00</span>
-        <small class="text-[9px] uppercase tracking-wider text-champagne-dark">Mins</small>
+      <div class="bg-white/60 border border-gold/20 rounded-xl p-2 text-center shadow-sm">
+        <span id="minutes" class="block font-bold text-lg text-maroon">00</span>
+        <small class="text-[9px] uppercase tracking-wider text-rosegold-dark">Mins</small>
       </div>
-      <div class="bg-royal-dark/80 border border-champagne/30 rounded-xl p-2 text-center shadow-md">
-        <span id="seconds" class="block font-bold text-lg text-champagne-light">00</span>
-        <small class="text-[9px] uppercase tracking-wider text-champagne-dark">Secs</small>
+      <div class="bg-white/60 border border-gold/20 rounded-xl p-2 text-center shadow-sm">
+        <span id="seconds" class="block font-bold text-lg text-maroon">00</span>
+        <small class="text-[9px] uppercase tracking-wider text-rosegold-dark">Secs</small>
       </div>
     </div>
 
     <!-- Wedding Event Details -->
-    <div class="text-center my-3 z-20 w-full">
-      <p class="font-serif italic text-lg text-champagne-light/95">With great joy, we invite you to join our celebrations</p>
+    <div class="text-center my-4 z-20 w-full">
+      <p class="font-serif italic text-lg text-maroon-light">We request the honor of your presence at our wedding</p>
       
       <div class="flex items-center justify-center gap-3 my-3">
-        <span class="w-8 h-[1px] bg-champagne/30"></span>
-        <span class="font-serif text-lg tracking-wider text-champagne-light font-semibold">THE WEDDING DAY</span>
-        <span class="w-8 h-[1px] bg-champagne/30"></span>
+        <span class="w-8 h-[1px] bg-gold/50"></span>
+        <span class="font-serif text-xl tracking-wider text-gold-dark font-semibold">THE WEDDING DAY</span>
+        <span class="w-8 h-[1px] bg-gold/50"></span>
       </div>
 
-      <div class="bg-royal-dark/60 backdrop-blur-md border border-champagne/20 rounded-2xl p-4 my-2 max-w-sm mx-auto shadow-inner">
-        <p id="wedding-date-display" class="font-sans font-semibold tracking-wide text-champagne-light text-base">
-          Thursday, August 27, 2026
-        </p>
-        <p class="font-sans text-xs text-champagne-dark font-medium my-1">
-          Auspicious Muhurtham starts at 9:00 AM
-        </p>
-        <div class="w-12 h-[1px] bg-champagne/20 mx-auto my-2"></div>
-        <p class="font-sans text-sm text-champagne-light font-semibold">
-          SCSR Gardens
-        </p>
-        <p class="font-sans text-xs text-champagne-dark">
-          Pulivendula, Andhra Pradesh, India
-        </p>
+      <!-- Date & Venue Container with Scratch Card Overlay -->
+      <div class="relative w-full max-w-sm mx-auto min-h-[140px] bg-white/40 backdrop-blur-sm border border-gold/20 rounded-2xl overflow-hidden shadow-sm flex flex-col items-center justify-center p-4 my-2">
+        
+        <!-- Underlying Real Date Details -->
+        <div class="text-center w-full z-0 select-none">
+          <p id="wedding-date-display" class="font-sans font-semibold tracking-wide text-maroon text-base">
+            Thursday, August 27, 2026
+          </p>
+          <p class="font-sans text-sm text-rosegold-dark font-medium my-1">
+            Auspicious Muhurtham starts at 9:00 AM
+          </p>
+          <div class="w-12 h-[1px] bg-gold/30 mx-auto my-2"></div>
+          <p class="font-sans text-sm text-maroon font-semibold">
+            SCSR Gardens
+          </p>
+          <p class="font-sans text-xs text-rosegold-dark">
+            Pulivendula, Andhra Pradesh, India
+          </p>
+        </div>
+
+        <!-- Scratch Canvas Overlay covering the details -->
+        <canvas id="scratch-canvas" class="absolute inset-0 z-10 cursor-pointer w-full h-full select-none touch-none rounded-2xl"></canvas>
       </div>
     </div>
 
     <!-- Bottom Floral Decoration Frame -->
-    <div class="w-full mt-3 mb-2 pointer-events-none opacity-85 z-20 flex justify-center">
-      <svg viewBox="0 0 200 40" class="w-48 text-champagne" fill="none">
-        <path d="M 20,30 Q 100,5 180,30" stroke="currentColor" stroke-width="1.2" stroke-dasharray="1.5 1.5" />
-        <!-- Central Mandala style flower -->
-        <circle cx="100" cy="20" r="4" fill="currentColor" />
-        <circle cx="100" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="0.75" />
-        <path d="M 100,5 Q 105,12 100,20 Q 95,12 100,5 M 100,20 Q 105,28 100,35 Q 95,28 100,20" fill="currentColor" />
-        <path d="M 85,20 Q 92,25 100,20 Q 92,15 85,20 M 100,20 Q 108,25 115,20 Q 108,15 100,20" fill="currentColor" />
+    <div class="w-full mt-4 mb-2 pointer-events-none opacity-80 z-20 flex justify-center">
+      <svg viewBox="0 0 200 40" class="w-48 text-leaf" fill="none">
+        <path d="M 20,30 Q 100,5 180,30" stroke="currentColor" stroke-width="1" />
+        <path d="M 60,20 C 50,15 45,5 60,5 C 65,15 65,18 60,20" fill="currentColor" />
+        <path d="M 140,20 C 150,15 155,5 140,5 C 135,15 135,18 140,20" fill="currentColor" />
+        <path d="M 100,10 C 95,20 90,25 100,32 C 110,25 105,20 100,10" fill="#B76E79" />
+        <path d="M 100,15 C 92,20 85,25 96,28 C 98,28 100,24 100,15" fill="#B76E79" opacity="0.8" />
+        <path d="M 100,15 C 108,20 115,25 104,28 C 102,28 100,24 100,15" fill="#B76E79" opacity="0.8" />
       </svg>
     </div>
 
-    <p class="text-xs italic text-champagne-dark mb-10 text-center">#RahulWedsChandana</p>
+    <p class="text-xs italic text-rosegold-dark mb-10 text-center">#RahulWedsChandana</p>
 
   </div>
 
   <!-- Interactive Bottom Action Bar (Fixed/Pill Buttons) -->
-  <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-[92%] max-w-md bg-royal-dark/85 backdrop-blur-md py-3 px-4 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-champagne/30 flex items-center justify-between gap-2">
-    <button id="getDirectionsBtn" class="flex-1 min-h-[44px] px-3 bg-royal-light hover:bg-royal text-champagne rounded-full text-xs font-semibold tracking-wider transition-all duration-300 transform active:scale-95 border border-champagne/20 flex items-center justify-center gap-1.5">
+  <div id="bottom-action-bar" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 -translate-y-12 opacity-0 pointer-events-none z-50 w-[92%] max-w-md bg-white/70 backdrop-blur-md py-3 px-4 rounded-full shadow-[0_8px_32px_rgba(122,31,45,0.15)] border border-gold/30 flex items-center justify-between gap-2 transition-all duration-1000 ease-out">
+    <button id="getDirectionsBtn" class="flex-1 min-h-[44px] px-3 bg-leaf hover:bg-leaf-dark text-white rounded-full text-xs font-semibold tracking-wider transition-all duration-300 transform active:scale-95 shadow-md flex items-center justify-center gap-1.5">
       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
       DIRECTIONS
     </button>
-    <button id="addCalendarBtn" class="flex-1 min-h-[44px] px-3 bg-champagne-dark hover:bg-champagne text-royal-dark rounded-full text-xs font-semibold tracking-wider transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-1.5">
+    <button id="addCalendarBtn" class="flex-1 min-h-[44px] px-3 bg-rosegold hover:bg-rosegold-dark text-white rounded-full text-xs font-semibold tracking-wider transition-all duration-300 transform active:scale-95 shadow-md flex items-center justify-center gap-1.5">
       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
       CALENDAR
     </button>
-    <button id="openRsvpBtn" class="flex-1 min-h-[44px] px-3 bg-maroon hover:bg-maroon-dark text-champagne rounded-full text-xs font-semibold tracking-wider transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-1.5">
+    <button id="openRsvpBtn" class="flex-1 min-h-[44px] px-3 bg-maroon hover:bg-maroon-light text-white rounded-full text-xs font-semibold tracking-wider transition-all duration-300 transform active:scale-95 shadow-md flex items-center justify-center gap-1.5">
       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
       RSVP
     </button>
   </div>
 
   <!-- RSVP Modal Dialog using native HTML5 Dialog with Light Dismiss -->
-  <dialog id="rsvpDialog" closedby="any" class="rounded-3xl border border-champagne/30 bg-royal p-6 w-[90%] max-w-md shadow-2xl relative text-champagne" aria-labelledby="dialogTitle">
+  <dialog id="rsvpDialog" closedby="any" class="rounded-3xl border border-gold/30 bg-cream p-6 w-[90%] max-w-md shadow-2xl relative" aria-labelledby="dialogTitle">
     <div class="flex flex-col items-center">
       
       <!-- Modal Close Button -->
-      <button onclick="document.getElementById('rsvpDialog').close()" class="absolute top-4 right-4 text-champagne/70 hover:text-champagne transition-colors" aria-label="Close dialog">
+      <button onclick="document.getElementById('rsvpDialog').close()" class="absolute top-4 right-4 text-rosegold-dark hover:text-maroon transition-colors" aria-label="Close dialog">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
 
-      <div class="w-12 h-12 border border-champagne/30 rounded-full flex items-center justify-center bg-royal-dark mb-3 shadow-[0_0_10px_rgba(230,194,128,0.1)]">
-        <svg class="w-6 h-6 text-champagne" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <div class="w-12 h-12 border border-gold/30 rounded-full flex items-center justify-center bg-blush mb-3">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
         </svg>
       </div>
 
-      <h2 id="dialogTitle" class="font-serif text-2xl font-bold text-champagne-light text-center mb-1">Confirm Attendance</h2>
-      <p class="text-xs text-champagne-dark text-center mb-4 italic">Please respond by August 15, 2026</p>
+      <h2 id="dialogTitle" class="font-serif text-2xl font-bold text-maroon text-center mb-1">Confirm Attendance</h2>
+      <p class="text-xs text-rosegold-dark text-center mb-4 italic">Please respond by August 15, 2026</p>
 
       <form id="rsvpForm" class="w-full flex flex-col gap-3.5" novalidate>
         <div>
-          <label for="guestName" class="block text-xs font-semibold text-champagne-light mb-1">Your Full Name</label>
+          <label for="guestName" class="block text-xs font-semibold text-maroon mb-1">Your Full Name</label>
           <input id="guestName" name="guestName" type="text" autocomplete="name" required 
-                 class="w-full min-h-[44px] border border-champagne/30 rounded-xl px-3 text-sm focus:outline-none focus:ring-1 focus:ring-champagne bg-royal-dark text-champagne-light" placeholder="e.g. John Doe">
+                 class="w-full min-h-[44px] border border-gold/30 rounded-xl px-3 text-sm focus:outline-none focus:ring-1 focus:ring-gold bg-white" placeholder="e.g. John Doe">
         </div>
 
-        <div class="border border-champagne/20 rounded-xl p-3 bg-royal-dark/50">
-          <span class="block text-xs font-semibold text-champagne-light mb-2">Will you attend?</span>
+        <div class="border border-gold/20 rounded-xl p-3 bg-white/50">
+          <span class="block text-xs font-semibold text-maroon mb-2">Will you attend?</span>
           <div class="flex items-center gap-4">
-            <label class="flex items-center gap-2 text-sm font-medium text-champagne-light cursor-pointer">
-              <input type="radio" name="attending" value="yes" required class="w-4 h-4 accent-champagne"> Yes, Joyfully attending
+            <label class="flex items-center gap-2 text-sm font-medium text-maroon cursor-pointer">
+              <input type="radio" name="attending" value="yes" required class="w-4 h-4 accent-maroon"> Yes, Joyfully attending
             </label>
-            <label class="flex items-center gap-2 text-sm font-medium text-champagne-light cursor-pointer">
-              <input type="radio" name="attending" value="no" required class="w-4 h-4 accent-champagne"> Regretfully declining
+            <label class="flex items-center gap-2 text-sm font-medium text-maroon cursor-pointer">
+              <input type="radio" name="attending" value="no" required class="w-4 h-4 accent-maroon"> Regretfully declining
             </label>
           </div>
         </div>
 
         <div id="guestCountContainer">
-          <label for="guestCount" class="block text-xs font-semibold text-champagne-light mb-1">Number of Guests</label>
+          <label for="guestCount" class="block text-xs font-semibold text-maroon mb-1">Number of Guests</label>
           <select id="guestCount" name="guestCount" required 
-                  class="w-full min-h-[44px] border border-champagne/30 rounded-xl px-3 text-sm focus:outline-none focus:ring-1 focus:ring-champagne bg-royal-dark text-champagne-light">
+                  class="w-full min-h-[44px] border border-gold/30 rounded-xl px-3 text-sm focus:outline-none focus:ring-1 focus:ring-gold bg-white">
             <option value="" selected disabled>Select guest count</option>
             <option value="1">1 (Self Only)</option>
             <option value="2">2 Guests</option>
@@ -402,12 +462,12 @@
         </div>
 
         <div>
-          <label for="dietaryNotes" class="block text-xs font-semibold text-champagne-light mb-1">Dietary Preferences / Wishes</label>
+          <label for="dietaryNotes" class="block text-xs font-semibold text-maroon mb-1">Dietary Preferences / Wishes</label>
           <textarea id="dietaryNotes" name="dietaryNotes" rows="2" 
-                    class="w-full border border-champagne/30 rounded-xl p-3 text-sm focus:outline-none focus:ring-1 focus:ring-champagne bg-royal-dark text-champagne-light resize-none" placeholder="e.g. Vegetarian, None, etc."></textarea>
+                    class="w-full border border-gold/30 rounded-xl p-3 text-sm focus:outline-none focus:ring-1 focus:ring-gold bg-white resize-none" placeholder="e.g. Vegetarian, None, etc."></textarea>
         </div>
 
-        <button type="submit" class="w-full min-h-[48px] bg-champagne hover:bg-champagne-light text-royal-dark font-semibold text-sm rounded-full tracking-wider transition-all shadow-md mt-2 flex items-center justify-center">
+        <button type="submit" class="w-full min-h-[48px] bg-maroon hover:bg-maroon-light text-white font-semibold text-sm rounded-full tracking-wider transition-all shadow-md mt-2 flex items-center justify-center">
           SUBMIT RESPONSE
         </button>
       </form>
@@ -416,27 +476,27 @@
   </dialog>
 
   <!-- Interactive Calendar Options Dialog -->
-  <dialog id="calendarDialog" closedby="any" class="rounded-3xl border border-champagne/30 bg-royal p-6 w-[90%] max-w-sm shadow-2xl relative text-champagne" aria-labelledby="calendarDialogTitle">
+  <dialog id="calendarDialog" closedby="any" class="rounded-3xl border border-gold/30 bg-cream p-6 w-[90%] max-w-sm shadow-2xl relative" aria-labelledby="calendarDialogTitle">
     <div class="flex flex-col items-center">
-      <button onclick="document.getElementById('calendarDialog').close()" class="absolute top-4 right-4 text-champagne/70 hover:text-champagne transition-colors" aria-label="Close dialog">
+      <button onclick="document.getElementById('calendarDialog').close()" class="absolute top-4 right-4 text-rosegold-dark hover:text-maroon transition-colors" aria-label="Close dialog">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
 
-      <div class="w-12 h-12 border border-champagne/30 rounded-full flex items-center justify-center bg-royal-dark mb-3">
-        <svg class="w-6 h-6 text-champagne" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <div class="w-12 h-12 border border-gold/30 rounded-full flex items-center justify-center bg-blush mb-3">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
       </div>
 
-      <h2 id="calendarDialogTitle" class="font-serif text-xl font-bold text-champagne-light text-center mb-4">Add to Calendar</h2>
+      <h2 id="calendarDialogTitle" class="font-serif text-xl font-bold text-maroon text-center mb-4">Add to Calendar</h2>
       
       <div class="w-full flex flex-col gap-3">
-        <button id="downloadIcsBtn" class="w-full min-h-[44px] border border-champagne/40 hover:bg-champagne/10 text-champagne-light font-semibold text-xs rounded-full tracking-wider transition-all flex items-center justify-center gap-2">
+        <button id="downloadIcsBtn" class="w-full min-h-[44px] border border-gold/40 hover:bg-gold/10 text-maroon font-semibold text-xs rounded-full tracking-wider transition-all flex items-center justify-center gap-2">
           DOWNLOAD .ICS FILE
         </button>
-        <a id="googleCalendarLink" target="_blank" rel="noopener noreferrer" class="w-full min-h-[44px] bg-champagne hover:bg-champagne-light text-royal-dark font-semibold text-xs rounded-full tracking-wider transition-all flex items-center justify-center gap-2">
+        <a id="googleCalendarLink" target="_blank" rel="noopener noreferrer" class="w-full min-h-[44px] bg-rosegold hover:bg-rosegold-dark text-white font-semibold text-xs rounded-full tracking-wider transition-all flex items-center justify-center gap-2">
           ADD TO GOOGLE CALENDAR
         </a>
       </div>
@@ -444,7 +504,7 @@
   </dialog>
 
   <!-- Custom Toast Notification -->
-  <div id="toast" class="fixed left-50 bottom-24 left-1/2 transform -translate-x-1/2 bg-royal-dark text-champagne border border-champagne/30 px-5 py-3 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 text-xs font-semibold text-center tracking-wide w-[90%] max-w-sm" role="status" aria-live="polite"></div>
+  <div id="toast" class="fixed left-50 bottom-24 left-1/2 transform -translate-x-1/2 bg-maroon-dark text-cream border border-gold/30 px-5 py-3 rounded-2xl shadow-xl transition-all duration-300 opacity-0 pointer-events-none z-50 text-xs font-semibold text-center tracking-wide w-[90%] max-w-sm" role="status" aria-live="polite"></div>
 
   <!-- Javascript Implementation -->
   <script>
@@ -480,6 +540,10 @@
       monogramInitials: document.getElementById('monogram-initials'),
       coupleNamesDisplay: document.getElementById('couple-names-display'),
       weddingDateDisplay: document.getElementById('wedding-date-display'),
+      envelopeGate: document.getElementById('envelope-gate'),
+      waxSealBtn: document.getElementById('wax-seal-btn'),
+      mainCard: document.getElementById('main-invitation-card'),
+      bottomActionBar: document.getElementById('bottom-action-bar')
     };
 
     const targetWeddingDate = new Date(WEDDING_DATE);
@@ -498,11 +562,130 @@
       });
       if (elements.weddingDateDisplay) elements.weddingDateDisplay.textContent = weddingDateFormatted;
 
+      setupEnvelopeGate();
       setupCountdown();
       setupEvents();
       setupPetals();
       setupCalendarUrls();
       setupLightDismissFallbacks();
+    }
+
+    // Interactive Gate Opening
+    function setupEnvelopeGate() {
+      elements.waxSealBtn.addEventListener('click', () => {
+        // Animate Gate Disappearance
+        elements.envelopeGate.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+        
+        // Show Inner Invitation Card with delay
+        setTimeout(() => {
+          elements.mainCard.classList.remove('pointer-events-none', 'scale-95', 'opacity-0');
+          elements.mainCard.classList.add('scale-100', 'opacity-100');
+          
+          elements.bottomActionBar.classList.remove('pointer-events-none', '-translate-y-12', 'opacity-0');
+          elements.bottomActionBar.classList.add('translate-y-0', 'opacity-100');
+          
+          // Trigger canvas scratch card initialization once visible
+          initScratchCard();
+        }, 300);
+      });
+    }
+
+    // Scratch Card Reveal logic
+    function initScratchCard() {
+      const canvas = document.getElementById('scratch-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      // Sync canvas size to CSS container box
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      canvas.width = w;
+      canvas.height = h;
+
+      // Draw Shiny Premium Gold Foil on Canvas
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#D4AF37');
+      grad.addColorStop(0.3, '#F3E5C8');
+      grad.addColorStop(0.7, '#C5A059');
+      grad.addColorStop(1, '#AA7C11');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Draw subtle glitter pattern dots
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+      for (let i = 0; i < 150; i++) {
+        ctx.fillRect(Math.random() * w, Math.random() * h, 1.5, 1.5);
+      }
+
+      // Border frame on scratch card
+      ctx.strokeStyle = 'rgba(122, 31, 45, 0.15)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(4, 4, w - 8, h - 8);
+
+      // Add instruction text
+      ctx.fillStyle = '#7A1F2D';
+      ctx.font = 'bold 12px Montserrat';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('Scratch to Reveal Wedding Date', w / 2, h / 2);
+
+      let isDrawing = false;
+
+      function scratch(e) {
+        if (!isDrawing) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        // "Erase" canvas pixels
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 22, 0, Math.PI * 2);
+        ctx.fill();
+
+        checkPercentage();
+      }
+
+      function checkPercentage() {
+        const imgData = ctx.getImageData(0, 0, w, h);
+        const pixels = imgData.data;
+        let transparent = 0;
+
+        for (let i = 3; i < pixels.length; i += 4) {
+          if (pixels[i] === 0) {
+            transparent++;
+          }
+        }
+
+        const percentage = (transparent / (pixels.length / 4)) * 100;
+        if (percentage > 45) {
+          // Fade away gold foil card completely
+          canvas.style.transition = 'opacity 0.6s ease';
+          canvas.style.opacity = '0';
+          setTimeout(() => {
+            canvas.remove();
+          }, 600);
+        }
+      }
+
+      // Mouse/Touch events
+      canvas.addEventListener('mousedown', () => isDrawing = true);
+      canvas.addEventListener('mousemove', scratch);
+      window.addEventListener('mouseup', () => isDrawing = false);
+
+      canvas.addEventListener('touchstart', (e) => {
+        isDrawing = true;
+        scratch(e);
+      });
+      canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault(); // Stop page scrolling while scratching
+        scratch(e);
+      });
+      window.addEventListener('touchend', () => isDrawing = false);
     }
 
     // Event Listeners setup
@@ -643,9 +826,8 @@
 
     // Generate Floating Flower Petals / Stardust Overlay
     function setupPetals() {
-      // Golden marigolds & rich red rose petals colors
-      const petalColors = ['rgba(230,194,128,0.7)', 'rgba(212,175,55,0.45)', 'rgba(122,31,45,0.85)', 'rgba(255,215,0,0.65)'];
-      const maxPetals = 22;
+      const petalColors = ['rgba(243,225,225,0.75)', 'rgba(234,211,213,0.7)', 'rgba(212,175,55,0.4)', 'rgba(253,243,243,0.85)'];
+      const maxPetals = 20;
 
       for (let i = 0; i < maxPetals; i++) {
         createPetal(petalColors);
@@ -656,33 +838,30 @@
       const petal = document.createElement('div');
       petal.classList.add('petal');
       
-      // Randomize styles
-      const size = Math.random() * 11 + 5;
+      const size = Math.random() * 12 + 6;
       petal.style.width = `${size}px`;
       petal.style.height = `${size}px`;
       petal.style.left = `${Math.random() * 100}%`;
       petal.style.background = colors[Math.floor(Math.random() * colors.length)];
       
-      // Randomize animation details
-      const duration = Math.random() * 9 + 7;
+      const duration = Math.random() * 8 + 6;
       const delay = Math.random() * -12;
       petal.style.animationDuration = `${duration}s`;
       petal.style.animationDelay = `${delay}s`;
       
       elements.petalContainer.appendChild(petal);
 
-      // Re-create petal once it finishes falling to keep continuous stream
       petal.addEventListener('animationiteration', () => {
         petal.style.left = `${Math.random() * 100}%`;
-        petal.style.width = `${Math.random() * 11 + 5}px`;
-        petal.style.height = `${Math.random() * 11 + 5}px`;
+        petal.style.width = `${Math.random() * 12 + 6}px`;
+        petal.style.height = `${Math.random() * 12 + 6}px`;
       });
     }
 
     // Calendar links generator
     function setupCalendarUrls() {
       const start = toGoogleDate(targetWeddingDate);
-      const end = toGoogleDate(new Date(targetWeddingDate.getTime() + (4 * 60 * 60 * 1000))); // 4 hours event duration
+      const end = toGoogleDate(new Date(targetWeddingDate.getTime() + (4 * 60 * 60 * 1000)));
       
       const params = new URLSearchParams({
         action: 'TEMPLATE',
