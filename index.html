@@ -277,12 +277,12 @@
     </div>
 
     <!-- Celebration Tagline -->
-    <p class="text-xs uppercase tracking-[0.2em] font-semibold text-gold-dark mb-2 text-center">
+    <p class="text-xs uppercase tracking-[0.25em] font-bold text-gold-dark mb-2 text-center drop-shadow-[0_1px_2px_rgba(255,255,255,0.9)]">
       Shubh Mangalam · With Divine Blessings
     </p>
 
     <!-- Couple Names (Elegant Calligraphy) -->
-    <h1 id="couple-names-display" class="font-cursive text-5xl md:text-6xl text-maroon text-center my-3 hover:scale-105 transition-transform duration-300">
+    <h1 id="couple-names-display" class="font-cursive text-5xl md:text-6xl text-maroon text-center my-3 drop-shadow-[0_3px_6px_rgba(212,175,55,0.4)] font-bold transition-all duration-300 transform hover:scale-105">
       Rahul & Chandana
     </h1>
 
@@ -587,6 +587,11 @@
           // Trigger canvas scratch card initialization once visible
           initScratchCard();
         }, 300);
+
+        // Completely hide the gate element after the fade transition ends
+        setTimeout(() => {
+          elements.envelopeGate.style.display = 'none';
+        }, 1000);
       });
     }
 
