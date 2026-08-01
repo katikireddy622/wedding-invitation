@@ -487,6 +487,7 @@
     const WEDDING_DATE = "2026-08-27T09:00:00+05:30";
     const MAP_LINK = "https://maps.app.goo.gl/qEBcNSTQc5q7LBfJ8";
     const INITIALS = "R & C";
+    const WHATSAPP_NUMBER = "919052901078";
 
     // Dom elements
     const elements = {
@@ -557,7 +558,7 @@
         elements.calendarDialog.close();
       });
 
-      // RSVP Form submission handler (Web3Forms Integration)
+      // RSVP Form submission handler (WhatsApp Integration)
       elements.rsvpForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
@@ -569,40 +570,38 @@
         const formData = new FormData(elements.rsvpForm);
         const guestName = formData.get('guestName').trim();
         const attending = formData.get('attending');
+        const guestCount = formData.get('guestCount') || '0';
+        const dietaryNotes = formData.get('dietaryNotes').trim() || 'None';
 
-        // Web3Forms configuration fields
-        formData.append("access_key", "5808a773-b4f5-4aa2-8cc6-536c2ba217e3");
-        formData.append("subject", `New RSVP: ${guestName} (${attending === 'yes' ? 'Attending' : 'Declined'})`);
-        formData.append("from_name", "Wedding RSVP Portal");
+        // Pre-formatted template message (easily searchable by "Wedding RSVP" in WhatsApp)
+        let messageText = "";
+        if (attending === 'yes') {
+          messageText = `*Wedding RSVP Confirmation*\n\n` +
+                        `Name: ${guestName}\n` +
+                        `Status: Attending ✅\n` +
+                        `Guests: ${guestCount}\n` +
+                        `Notes: ${dietaryNotes}\n\n` +
+                        `Looking forward to the celebration!`;
+        } else {
+          messageText = `*Wedding RSVP Confirmation*\n\n` +
+                        `Name: ${guestName}\n` +
+                        `Status: Declined ❌\n\n` +
+                        `Sending our warmest wishes!`;
+        }
 
-        showToast("Submitting your response...");
+        const encodedText = encodeURIComponent(messageText);
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`;
 
-        fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          body: formData
-        })
-        .then(async (response) => {
-          const res = await response.json();
-          if (response.status === 200) {
-            if (attending === 'yes') {
-              showToast(`Thank you, ${guestName}! We are thrilled to celebrate with you.`);
-            } else {
-              showToast(`Thank you, ${guestName}. You will be missed!`);
-            }
-            elements.rsvpForm.reset();
-            elements.rsvpDialog.close();
-            // Reset form UI constraints
-            elements.guestCountContainer.style.display = 'block';
-            elements.guestCount.required = true;
-          } else {
-            showToast("Something went wrong. Please try again.");
-            console.error(res);
-          }
-        })
-        .catch((error) => {
-          showToast("Network error. Please check your connection.");
-          console.error(error);
-        });
+        showToast("Opening WhatsApp to send RSVP...");
+
+        setTimeout(() => {
+          window.open(waUrl, '_blank', 'noopener,noreferrer');
+          elements.rsvpForm.reset();
+          elements.rsvpDialog.close();
+          // Reset form UI constraints
+          elements.guestCountContainer.style.display = 'block';
+          elements.guestCount.required = true;
+        }, 1000);
       });
 
       // Dynamically toggle guest count requirement based on attendance status
