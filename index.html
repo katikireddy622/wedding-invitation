@@ -193,20 +193,26 @@
         <span class="absolute inset-0 rounded-full border border-gold/50 ring-pulse"></span>
         <span class="absolute inset-2 rounded-full border-2 border-double border-gold/40 ring-pulse" style="animation-delay: -1s;"></span>
         
-        <!-- Wax Seal Body (Heart & Infinity Monogram Logo) -->
-        <div class="w-24 h-24 flex-shrink-0 bg-gradient-to-br from-maroon-light via-maroon to-maroon-dark rounded-full shadow-[0_8px_20px_rgba(122,31,45,0.3)] border-2 border-gold/50 flex items-center justify-center relative p-3.5 text-gold-light">
+        <!-- Wax Seal Body (Traditional Gold Lotus Flower Logo) -->
+        <div class="w-24 h-24 flex-shrink-0 bg-gradient-to-br from-maroon-light via-maroon to-maroon-dark rounded-full shadow-[0_8px_20px_rgba(122,31,45,0.3)] border-2 border-gold/50 flex items-center justify-center relative p-3 text-gold-light">
           <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
-            <!-- Gold Heart Outline -->
-            <path d="M 50,33 C 55,22 70,22 70,38 C 70,54 50,72 50,72 C 50,72 30,54 30,38 C 30,22 45,22 50,33 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-            <!-- Dashed Infinity Loop behind -->
-            <path d="M 38,54 C 28,54 28,64 38,64 C 48,64 52,54 62,54 C 72,54 72,64 62,64 C 52,64 48,54 38,54 Z" stroke="currentColor" stroke-width="0.75" stroke-dasharray="2 2" opacity="0.6" />
-            <!-- Sparkle Bead at bottom point -->
-            <circle cx="50" cy="72" r="2" fill="currentColor" />
-            <!-- Initials in Heart Lobes -->
-            <g font-family="'Cormorant Garamond', serif" font-weight="700" font-size="15">
-              <text x="41" y="42" fill="currentColor" text-anchor="middle">R</text>
-              <text x="59" y="42" fill="#FDF3F3" text-anchor="middle">C</text>
-            </g>
+            <!-- Center Petal -->
+            <path d="M 50,15 C 55,30 55,42 50,65 C 45,42 45,30 50,15 Z" fill="currentColor" />
+            <!-- Left Inner Petal -->
+            <path d="M 50,22 C 34,28 32,45 46,58 C 39,42 42,32 50,22 Z" fill="currentColor" opacity="0.9" />
+            <!-- Right Inner Petal -->
+            <path d="M 50,22 C 66,28 68,45 54,58 C 61,42 58,32 50,22 Z" fill="currentColor" opacity="0.9" />
+            <!-- Left Outer Petal -->
+            <path d="M 50,30 C 22,36 18,58 38,65 C 28,52 34,40 50,30 Z" fill="currentColor" opacity="0.75" />
+            <!-- Right Outer Petal -->
+            <path d="M 50,30 C 78,36 82,58 62,65 C 72,52 66,40 50,30 Z" fill="currentColor" opacity="0.75" />
+            <!-- Lotus Base/Leaves -->
+            <path d="M 28,62 Q 50,52 72,62 Q 50,78 28,62 Z" fill="currentColor" opacity="0.85" />
+            <path d="M 50,60 L 50,78" stroke="currentColor" stroke-width="1.5" />
+            <!-- Sparkles around -->
+            <circle cx="50" cy="8" r="1.5" fill="currentColor" />
+            <circle cx="20" cy="30" r="1" fill="currentColor" opacity="0.7" />
+            <circle cx="80" cy="30" r="1" fill="currentColor" opacity="0.7" />
           </svg>
         </div>
       </div>
@@ -278,21 +284,25 @@
       </svg>
     </div>
 
-    <!-- Custom Initials Monogram (Wax Seal - Heart & Infinity Logo) -->
+    <!-- Custom Initials Monogram (Wax Seal - Traditional Gold Lotus Flower Logo) -->
     <div class="mt-8 mb-4 relative flex items-center justify-center">
       <div class="w-16 h-16 flex-shrink-0 bg-gradient-to-br from-maroon-light via-maroon to-maroon-dark rounded-full shadow-[0_4px_10px_rgba(122,31,45,0.25)] border-2 border-gold/50 flex items-center justify-center relative p-2 text-gold-light">
         <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
-          <!-- Gold Heart Outline -->
-          <path d="M 50,33 C 55,22 70,22 70,38 C 70,54 50,72 50,72 C 50,72 30,54 30,38 C 30,22 45,22 50,33 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-          <!-- Dashed Infinity Loop behind -->
-          <path d="M 38,54 C 28,54 28,64 38,64 C 48,64 52,54 62,54 C 72,54 72,64 62,64 C 52,64 48,54 38,54 Z" stroke="currentColor" stroke-width="0.75" stroke-dasharray="2 2" opacity="0.6" />
-          <!-- Sparkle Bead at bottom point -->
-          <circle cx="50" cy="72" r="2" fill="currentColor" />
-          <!-- Initials in Heart Lobes -->
-          <g font-family="'Cormorant Garamond', serif" font-weight="700" font-size="15">
-            <text x="41" y="42" fill="currentColor" text-anchor="middle">R</text>
-            <text x="59" y="42" fill="#FDF3F3" text-anchor="middle">C</text>
-          </g>
+          <!-- Center Petal -->
+          <path d="M 50,15 C 55,30 55,42 50,65 C 45,42 45,30 50,15 Z" fill="currentColor" />
+          <!-- Left Inner Petal -->
+          <path d="M 50,22 C 34,28 32,45 46,58 C 39,42 42,32 50,22 Z" fill="currentColor" opacity="0.9" />
+          <!-- Right Inner Petal -->
+          <path d="M 50,22 C 66,28 68,45 54,58 C 61,42 58,32 50,22 Z" fill="currentColor" opacity="0.9" />
+          <!-- Left Outer Petal -->
+          <path d="M 50,30 C 22,36 18,58 38,65 C 28,52 34,40 50,30 Z" fill="currentColor" opacity="0.75" />
+          <!-- Right Outer Petal -->
+          <path d="M 50,30 C 78,36 82,58 62,65 C 72,52 66,40 50,30 Z" fill="currentColor" opacity="0.75" />
+          <!-- Lotus Base/Leaves -->
+          <path d="M 28,62 Q 50,52 72,62 Q 50,78 28,62 Z" fill="currentColor" opacity="0.85" />
+          <path d="M 50,60 L 50,78" stroke="currentColor" stroke-width="1.5" />
+          <!-- Sparkles around -->
+          <circle cx="50" cy="8" r="1.5" fill="currentColor" />
         </svg>
       </div>
     </div>
