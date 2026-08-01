@@ -557,7 +557,7 @@
         elements.calendarDialog.close();
       });
 
-      // RSVP Form submission handler
+      // RSVP Form submission handler (Web3Forms Integration)
       elements.rsvpForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
@@ -569,15 +569,40 @@
         const formData = new FormData(elements.rsvpForm);
         const guestName = formData.get('guestName').trim();
         const attending = formData.get('attending');
-        
-        if (attending === 'yes') {
-          showToast(`Thank you, ${guestName}! We are thrilled to celebrate with you.`);
-        } else {
-          showToast(`Thank you, ${guestName}. You will be missed!`);
-        }
 
-        elements.rsvpForm.reset();
-        elements.rsvpDialog.close();
+        // Web3Forms configuration fields
+        formData.append("access_key", "5808a773-b4f5-4aa2-8cc6-536c2ba217e3");
+        formData.append("subject", `New RSVP: ${guestName} (${attending === 'yes' ? 'Attending' : 'Declined'})`);
+        formData.append("from_name", "Wedding RSVP Portal");
+
+        showToast("Submitting your response...");
+
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData
+        })
+        .then(async (response) => {
+          const res = await response.json();
+          if (response.status === 200) {
+            if (attending === 'yes') {
+              showToast(`Thank you, ${guestName}! We are thrilled to celebrate with you.`);
+            } else {
+              showToast(`Thank you, ${guestName}. You will be missed!`);
+            }
+            elements.rsvpForm.reset();
+            elements.rsvpDialog.close();
+            // Reset form UI constraints
+            elements.guestCountContainer.style.display = 'block';
+            elements.guestCount.required = true;
+          } else {
+            showToast("Something went wrong. Please try again.");
+            console.error(res);
+          }
+        })
+        .catch((error) => {
+          showToast("Network error. Please check your connection.");
+          console.error(error);
+        });
       });
 
       // Dynamically toggle guest count requirement based on attendance status
